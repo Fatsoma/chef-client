@@ -15,10 +15,7 @@ pre-start script
 end script
 
 script
-exec /bin/bash <<EOT
-  source /etc/profile
-
+  . /etc/profile
   exec <%= @client_bin %> -i <%= node["chef_client"]["interval"] %> -L <%= node["chef_client"]["log_dir"] %>/client.log <%= node["chef_client"]["daemon_options"].join(' ') %>
-EOT
 end script
 

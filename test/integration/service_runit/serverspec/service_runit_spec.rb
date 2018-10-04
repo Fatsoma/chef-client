@@ -1,9 +1,9 @@
 require 'serverspec'
 
-include Serverspec::Helper::Exec
+set :backend, :exec
 
-describe service('chef-client') do
-  it { should be_running }
+describe command('ps aux | grep che[f]') do
+  its(:stdout) { should match /chef-client/ }
 end
 
 describe file('/etc/service/chef-client/run') do
